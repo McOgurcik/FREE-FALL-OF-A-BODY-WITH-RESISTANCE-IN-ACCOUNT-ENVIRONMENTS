@@ -46,7 +46,7 @@ def plot_figure(p,p_liq,r,ro,u,x0,y0):
         t.append(ro)
         h.append(0)
         dot = True
-        rn = 500
+        rn = 500+(x0*15)
         i = 0
         while (rn>0):
             md = (p-p_liq)*4*pi*r*r*r/3
@@ -68,7 +68,7 @@ def plot_figure(p,p_liq,r,ro,u,x0,y0):
     # calculation
     ax_1.grid(True, linestyle='--', alpha=0.5)
     ax_1.set_xlim(0, t[i]*0.5+x0)
-    ax_1.set_ylim(0, v[i]*0.6+y0)
+    ax_1.set_ylim(0, v[i]*0.5+y0+20)
     ax_2.set_xlim(0, t[i]*0.5+x0)
     ax_2.set_ylim(0, h[i]*0.9+y0*100)
     # ax_2.set_ylim(0, y0)
@@ -84,12 +84,12 @@ def plot_figure(p,p_liq,r,ro,u,x0,y0):
 layout = [
     [sg.Canvas(size=(640, 480), key='Canvas')],
     [sg.Text('p'), sg.Input(p,enable_events=True,k='-P-',size=(5, 1)),sg.Text('p_liq'), sg.Input(p_liq,enable_events=True,k='-PL-',size=(5, 1)),sg.Text('ro'), sg.Input(ro,enable_events=True,k='-RO-',size=(5, 1)),sg.Text(text="xm"),
-    sg.Spin([i for i in range(1, 100)],
+    sg.Spin([i for i in range(-200, 200)],
             initial_value=50,
             enable_events=True,
             k='-X-'),
     sg.Text(text="ym"),
-    sg.Spin([i for i in range(1, 100)],
+    sg.Spin([i for i in range(-200, 200)],
             initial_value=50,
             enable_events=True,
             k='-Y-')],
